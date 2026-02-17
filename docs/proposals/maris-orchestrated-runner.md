@@ -1,29 +1,80 @@
 # Proposal: Maris Orchestrated Runner (Deterministic Coding Workflow)
 
 ## Status
-Draft
+Draft (requesting maintainer feedback)
 
 ## Summary
 Introduce a Gambit workflow pattern for coding tasks that enforces deterministic completion with a hard validation gate and machine-readable final status output.
 
+This proposal addresses a common failure mode in coding-agent loops: runs that summarize early or report completion without objective validation.
+
 ## Goals
 - Deterministic completion semantics
-- Explicit validation gate before done
+- Explicit validation gate before `done`
 - Structured final output schema
 - Clear operator progress summaries
+- Better blocked-state diagnosis (runtime/network/tooling)
+
+## Non-goals
+- Replacing model engines (Codex/Claude/etc.)
+- Auto-merge/deploy policy
+- Cloud-only dependencies
 
 ## Proposed flow
-1. intake.deck
-2. plan.deck
-3. execute.deck
-4. validate.deck
-5. finalize.deck
+1. `intake.deck`
+2. `plan.deck`
+3. `execute.deck`
+4. `validate.deck`
+5. `finalize.deck`
 
-## Completion rule
-`status=done` only if validation passed and done token emitted.
+## Completion rule (hard)
+`status=done` only if all are true:
+- validation passed
+- done token emitted
+- test exit code is zero (when a test command is configured)
+
+## Suggested final output schema
+
+```json
+{
+  "status": "done|incomplete|blocked|failed",
+  "doneTokenEmitted": true,
+  "validationPassed": true,
+  "artifacts": {
+    "filesChanged": ["string"],
+    "logPath": "string",
+    "testCommand": "string",
+    "testExitCode": 0
+  },
+  "summary": {
+    "changed": ["string"],
+    "remains": ["string"],
+    "nextStep": "string"
+  }
+}
+```
+
+## Error model
+- `blocked`: required runtime/tool/network unavailable
+- `failed`: execution or validation failed and cannot auto-recover
+- `incomplete`: cycle/time budget reached before completion criteria
+
+All non-done states must include an actionable next step.
 
 ## Acceptance criteria
-- no done state without validation success
+- no `done` state without validation success
 - final output conforms to schema
 - blocked state for missing runtime/network
-- regression coverage for token false-positive behavior
+- per-cycle summary includes `changed`, `remains`, `next`
+- regression coverage for done-token false-positive behavior
+
+## Rollout plan
+1. Add proposal doc (this file)
+2. Add minimal runner example under `examples/orchestrated_runner/`
+3. Add helper + tests for strict token line matching
+4. Add short demo guide and run transcript
+
+## Open questions
+- Should done token remain required when schema already marks `status=done` + `validationPassed=true`?
+- Should validation support command arrays (fail-fast), not just one command?
+- Should we standardize artifact manifest file format for CI integrations?

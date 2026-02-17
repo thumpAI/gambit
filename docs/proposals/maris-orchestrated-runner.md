@@ -4,9 +4,15 @@
 Draft (requesting maintainer feedback)
 
 ## Summary
-Introduce a Gambit workflow pattern for coding tasks that enforces deterministic completion with a hard validation gate and machine-readable final status output.
+Introduce an **intent-first** Gambit workflow contract for coding tasks that enforces deterministic completion with a hard validation gate and machine-readable final status output.
 
 This proposal addresses a common failure mode in coding-agent loops: runs that summarize early or report completion without objective validation.
+
+## Intent Contract (primary contribution)
+- Outcome: reliable completion semantics for coding workflows
+- Invariants: completion only after validation + exact token-line match
+- Constraints: local-first, structured terminal states, explicit remediation on blocked runs
+- Evaluations: machine-checkable tests for token leakage and blocked-state behavior
 
 ## Goals
 - Deterministic completion semantics
@@ -61,12 +67,13 @@ This proposal addresses a common failure mode in coding-agent loops: runs that s
 
 All non-done states must include an actionable next step.
 
-## Acceptance criteria
+## Acceptance criteria (machine-checkable)
 - no `done` state without validation success
 - final output conforms to schema
-- blocked state for missing runtime/network
+- blocked state for missing runtime/network includes remediation text
 - per-cycle summary includes `changed`, `remains`, `next`
 - regression coverage for done-token false-positive behavior
+- exact standalone done-token line matching is enforced by tests
 
 ## Rollout plan
 1. Add proposal doc (this file)

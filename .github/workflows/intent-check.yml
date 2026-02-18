@@ -38,6 +38,9 @@ jobs:
       - name: Generate intent PR packet preview
         run: deno task packet:intent > intent-pr-packet.generated.md
 
+      - name: Check generated packet freshness
+        run: deno run -A scripts/check_intent_packet_fresh.ts
+
       - name: Upload intent packet artifact
         uses: actions/upload-artifact@v4
         with:

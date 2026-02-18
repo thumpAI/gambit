@@ -27,6 +27,8 @@ Enable deterministic coding-task completion where `done` is only emitted after o
 
 ## Acceptance checks
 - `deno test src/done_token.test.ts`
+- `deno test src/orchestrated_status.test.ts`
+- `deno task test:intent`
 - Schema conformance test for final status object using the artifact below
 - Blocked-state test for missing runtime
 

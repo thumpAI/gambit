@@ -36,10 +36,11 @@ Enable deterministic coding-task completion where `done` is only emitted after o
 
 ### Quick verify sequence
 ```bash
-deno task test:intent
+deno task check:intent
 deno task validate:intent /tmp/orchestrated-runner-final-status.json
-deno task test:intent:fixtures
 ```
+
+See also: `docs/specs/intent-contrib-runbook.md` for full contributor workflow.
 
 ### Emit compliant final-status JSON (helper)
 ```bash

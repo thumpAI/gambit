@@ -35,6 +35,25 @@ Deno.test("final status validator rejects done with non-zero exit code", () => {
   assert(result.errors.some((e) => e.includes("testExitCode=0")));
 });
 
+Deno.test("final status validator rejects done without emitted token", () => {
+  const result = validateFinalStatus({ ...base, doneTokenEmitted: false });
+  assert(result.ok === false);
+  assert(result.errors.some((e) => e.includes("doneTokenEmitted=true")));
+});
+
+Deno.test("final status validator rejects missing artifacts fields", () => {
+  const payload = {
+    ...base,
+    artifacts: {
+      ...base.artifacts,
+      testCommand: "",
+    },
+  };
+  const result = validateFinalStatus(payload);
+  assert(result.ok === false);
+  assert(result.errors.some((e) => e.includes("artifacts.testCommand")));
+});
+
 Deno.test("final status validator requires remediation context for blocked", () => {
   const payload = {
     ...base,

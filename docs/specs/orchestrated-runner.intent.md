@@ -32,6 +32,13 @@ Enable deterministic coding-task completion where `done` is only emitted after o
 - `deno task validate:intent /tmp/orchestrated-runner-final-status.json`
 - Schema conformance test for final status object using the artifact below
 - Blocked-state test for missing runtime
+- Done-state invariant test for missing emitted token
+
+### Quick verify sequence
+```bash
+deno task test:intent
+deno task validate:intent /tmp/orchestrated-runner-final-status.json
+```
 
 ## Schema-conformance test artifact (final status)
 Use this artifact as the canonical `done` terminal payload for conformance validation.

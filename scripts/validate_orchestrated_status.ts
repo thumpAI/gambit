@@ -1,6 +1,6 @@
 #!/usr/bin/env -S deno run -A
 
-import { validateFinalStatus } from "../src/orchestrated_status.ts";
+import { assertFinalStatus, validateFinalStatus } from "../src/orchestrated_status.ts";
 
 async function main() {
   const file = Deno.args[0];
@@ -20,6 +20,7 @@ async function main() {
 
   const result = validateFinalStatus(parsed);
   if (result.ok) {
+    assertFinalStatus(parsed);
     console.log("check final status payload is valid");
     Deno.exit(0);
   }

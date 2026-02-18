@@ -1,5 +1,5 @@
 import { assert, assertEquals } from "@std/assert";
-import { validateFinalStatus } from "./orchestrated_status.ts";
+import { assertFinalStatus, validateFinalStatus } from "./orchestrated_status.ts";
 
 const base = {
   status: "done",
@@ -66,4 +66,20 @@ Deno.test("final status validator requires remediation context for blocked", () 
   const result = validateFinalStatus(payload);
   assert(result.ok === false);
   assert(result.errors.some((e) => e.includes("remediation context")));
+});
+
+Deno.test("assertFinalStatus passes for valid payload", () => {
+  assertFinalStatus(base);
+});
+
+Deno.test("assertFinalStatus throws for invalid payload", () => {
+  const bad = { ...base, doneTokenEmitted: false };
+  let threw = false;
+  try {
+    assertFinalStatus(bad);
+  } catch (err) {
+    threw = true;
+    assert(String(err).includes("final status validation failed"));
+  }
+  assert(threw);
 });

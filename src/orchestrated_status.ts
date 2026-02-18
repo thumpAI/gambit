@@ -63,3 +63,10 @@ export function validateFinalStatus(input: unknown): { ok: true } | { ok: false;
 
   return errors.length ? { ok: false, errors } : { ok: true };
 }
+
+export function assertFinalStatus(input: unknown): asserts input is FinalStatus {
+  const result = validateFinalStatus(input);
+  if (!result.ok) {
+    throw new Error(`final status validation failed: ${result.errors.join("; ")}`);
+  }
+}

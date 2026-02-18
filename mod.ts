@@ -54,6 +54,6 @@ export { createGoogleProvider } from "./src/providers/google.ts";
 /** Start the WebSocket simulator server for the Gambit UI. */
 export { startWebSocketSimulator } from "./src/server.ts";
 /** Validate orchestrated final status payloads against intent invariants. */
-export { validateFinalStatus } from "./src/orchestrated_status.ts";
+export { assertFinalStatus, validateFinalStatus } from "./src/orchestrated_status.ts";
 /** Final status payload shape for orchestrated workflows. */
 export type { FinalStatus, OrchestratedStatus } from "./src/orchestrated_status.ts";

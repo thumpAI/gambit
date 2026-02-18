@@ -32,6 +32,9 @@ jobs:
       - name: Test status report generator
         run: deno test -A scripts/intent_status_report.test.ts
 
+      - name: Test PR packet generator
+        run: deno test -A scripts/generate_intent_pr_packet.test.ts
+
       - name: Generate intent PR packet preview
         run: deno task packet:intent > intent-pr-packet.generated.md
 

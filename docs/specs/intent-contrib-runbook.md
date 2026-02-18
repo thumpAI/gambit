@@ -24,12 +24,17 @@ deno task check:intent
 deno task report:intent
 ```
 
-5. Validate a concrete final-status payload:
+5. Run full release gate in one command:
+```bash
+deno task gate:intent
+```
+
+6. Validate a concrete final-status payload:
 ```bash
 deno task validate:intent /tmp/orchestrated-runner-final-status.json
 ```
 
-5. Emit a compliant payload template:
+7. Emit a compliant payload template:
 ```bash
 deno task emit:intent --status done --done-token-emitted true --validation-passed true --files-changed '["docs/specs/orchestrated-runner.intent.md"]' --log-path artifacts/orchestrated-runner/validation.log --test-command "deno task test:intent" --test-exit-code 0 --changed '["Updated intent contract"]' --remains '[]' --next-step "Emit ORCHESTRATOR_DONE on its own line."
 ```

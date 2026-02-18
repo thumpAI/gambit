@@ -18,6 +18,7 @@ Move contribution quality from implementation-style review to contract + invaria
 - Add CI-required status check (`intent-check`)
 - Add maintainer review checklist for intent PRs
 - Add repository examples for blocked/incomplete remediation
+- Standardize one-command release gate (`deno task gate:intent`)
 
 ## Success metrics
 1. False completion incidents trend to zero.

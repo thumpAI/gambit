@@ -3,8 +3,11 @@
 Generate fresh packet before opening upstream PR:
 
 ```bash
-deno task packet:intent > docs/specs/intent-pr-packet.generated.md
+deno task packet:intent:file
 ```
+
+This writes:
+- `docs/specs/intent-pr-packet.generated.md`
 
 Then run full gate:
 

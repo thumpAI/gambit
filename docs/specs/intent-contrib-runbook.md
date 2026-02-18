@@ -19,7 +19,12 @@ deno task test:intent:fixtures
 deno task check:intent
 ```
 
-4. Validate a concrete final-status payload:
+4. Generate status report for maintainers:
+```bash
+deno task report:intent
+```
+
+5. Validate a concrete final-status payload:
 ```bash
 deno task validate:intent /tmp/orchestrated-runner-final-status.json
 ```

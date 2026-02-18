@@ -40,6 +40,21 @@ deno task test:intent
 deno task validate:intent /tmp/orchestrated-runner-final-status.json
 ```
 
+### Emit compliant final-status JSON (helper)
+```bash
+deno task emit:intent \
+  --status done \
+  --done-token-emitted true \
+  --validation-passed true \
+  --files-changed '["docs/specs/orchestrated-runner.intent.md"]' \
+  --log-path artifacts/orchestrated-runner/validation.log \
+  --test-command "deno task test:intent" \
+  --test-exit-code 0 \
+  --changed '["Updated intent contract"]' \
+  --remains '[]' \
+  --next-step "Emit ORCHESTRATOR_DONE on its own line."
+```
+
 ## Schema-conformance test artifact (final status)
 Use this artifact as the canonical `done` terminal payload for conformance validation.
 

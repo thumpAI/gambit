@@ -306,3 +306,15 @@ Start the Debug UI:
 ```
 deno run -A jsr:@bolt-foundry/gambit/cli serve <deck> --port 8000
 ```
+
+<!-- intent-tools:start -->
+## Intent Contribution Quick Commands
+
+```bash
+# Full release readiness gate
+deno task gate:intent
+
+# Generate maintainer packet
+deno task packet:intent
+```
+<!-- intent-tools:end -->

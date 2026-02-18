@@ -18,6 +18,7 @@
     "guard:bfmono-imports": "deno run -A scripts/guard-bfmono-imports.ts",
     "test": "deno test --allow-all",
     "test:intent": "deno test src/done_token.test.ts src/orchestrated_status.test.ts",
+    "validate:intent": "deno run -A scripts/validate_orchestrated_status.ts",
     "ci": "deno fmt --check && deno lint && deno task guard:bfmono-imports && deno test --allow-all",
     "fix": "deno fmt && deno lint --fix && deno test --allow-all",
     "compile": "deno run -A scripts/compile.ts",

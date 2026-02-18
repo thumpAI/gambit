@@ -38,6 +38,7 @@ Enable deterministic coding-task completion where `done` is only emitted after o
 ```bash
 deno task test:intent
 deno task validate:intent /tmp/orchestrated-runner-final-status.json
+deno task test:intent:fixtures
 ```
 
 ### Emit compliant final-status JSON (helper)

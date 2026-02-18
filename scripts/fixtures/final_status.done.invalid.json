@@ -1,0 +1,16 @@
+{
+  "status": "done",
+  "doneTokenEmitted": false,
+  "validationPassed": false,
+  "artifacts": {
+    "filesChanged": [],
+    "logPath": "artifacts/orchestrated-runner/validation.log",
+    "testCommand": "deno task test:intent",
+    "testExitCode": 1
+  },
+  "summary": {
+    "changed": [],
+    "remains": [],
+    "nextStep": "Fix validation failures."
+  }
+}

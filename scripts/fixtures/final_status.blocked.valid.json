@@ -1,0 +1,21 @@
+{
+  "status": "blocked",
+  "doneTokenEmitted": false,
+  "validationPassed": false,
+  "artifacts": {
+    "filesChanged": [],
+    "logPath": "artifacts/orchestrated-runner/blocked.log",
+    "testCommand": "deno task test:intent",
+    "testExitCode": 1
+  },
+  "summary": {
+    "changed": [
+      "Attempted validation run"
+    ],
+    "remains": [
+      "Install missing runtime: deno",
+      "Re-run validation command"
+    ],
+    "nextStep": "Install runtime and retry."
+  }
+}

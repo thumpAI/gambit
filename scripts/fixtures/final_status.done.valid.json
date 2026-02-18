@@ -1,0 +1,20 @@
+{
+  "status": "done",
+  "doneTokenEmitted": true,
+  "validationPassed": true,
+  "artifacts": {
+    "filesChanged": [
+      "docs/specs/orchestrated-runner.intent.md"
+    ],
+    "logPath": "artifacts/orchestrated-runner/validation.log",
+    "testCommand": "deno task test:intent",
+    "testExitCode": 0
+  },
+  "summary": {
+    "changed": [
+      "Added invariant checks"
+    ],
+    "remains": [],
+    "nextStep": "Emit ORCHESTRATOR_DONE on its own line."
+  }
+}

@@ -1,0 +1,27 @@
+name: Intent Checks
+
+on:
+  push:
+    branches:
+      - proposal/maris-orchestrated-runner
+      - main
+  pull_request:
+
+jobs:
+  intent-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v2.x
+
+      - name: Run intent invariant checks
+        run: deno task check:intent
+
+      - name: Validate fixture payload directly
+        run: deno task validate:intent scripts/fixtures/final_status.done.valid.json

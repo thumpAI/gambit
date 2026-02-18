@@ -15,4 +15,10 @@ Then run full gate:
 deno task gate:intent
 ```
 
+And verify packet freshness explicitly (if needed):
+
+```bash
+deno task check:intent:packet:fresh
+```
+
 Attach generated packet content in PR body/comment if maintainers request compressed context.

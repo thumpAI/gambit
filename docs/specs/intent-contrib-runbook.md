@@ -29,14 +29,24 @@ deno task report:intent
 deno task gate:intent
 ```
 
-6. Validate a concrete final-status payload:
+6. Verify generated PR packet is fresh:
+```bash
+deno task check:intent:packet:fresh
+```
+
+7. Validate a concrete final-status payload:
 ```bash
 deno task validate:intent /tmp/orchestrated-runner-final-status.json
 ```
 
-7. Emit a compliant payload template:
+8. Emit a compliant payload template:
 ```bash
 deno task emit:intent --status done --done-token-emitted true --validation-passed true --files-changed '["docs/specs/orchestrated-runner.intent.md"]' --log-path artifacts/orchestrated-runner/validation.log --test-command "deno task test:intent" --test-exit-code 0 --changed '["Updated intent contract"]' --remains '[]' --next-step "Emit ORCHESTRATOR_DONE on its own line."
+```
+
+9. Refresh packet file explicitly (optional):
+```bash
+deno task packet:intent:file
 ```
 
 ## Reviewer checklist

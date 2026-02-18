@@ -1,13 +1,14 @@
 # Intent PR Packet
 
 - branch: proposal/maris-orchestrated-runner
-- head: ffbf551f
-- generatedAt: 2026-02-18T08:54:45.953Z
+- head: f75362a7
+- generatedAt: 2026-02-18T08:56:20.800Z
 
 ## Summary
 Intent-first contribution bundle for deterministic completion semantics, validation contracts, and contributor DX automation.
 
 ## Commits (main..HEAD)
+- f75362a7 intent-gate: enforce generated packet freshness in CI and local gate
 - ffbf551f intent-dx: auto-write PR packet file in release gate
 - de8a2876 intent-tests: cover PR packet generator in gate and CI
 - f970efa9 intent-dx: add README sync helper for intent command snippet
@@ -49,6 +50,8 @@ Intent-first contribution bundle for deterministic completion semantics, validat
 - examples/orchestrated_runner/plan.deck.md
 - examples/orchestrated_runner/validate.deck.md
 - mod.ts
+- scripts/check_intent_packet_fresh.test.ts
+- scripts/check_intent_packet_fresh.ts
 - scripts/emit_final_status.test.ts
 - scripts/emit_final_status.ts
 - scripts/fixtures/final_status.blocked.valid.json

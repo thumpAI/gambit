@@ -28,3 +28,12 @@ jobs:
 
       - name: Validate emitter helper behavior
         run: deno test -A scripts/emit_final_status.test.ts
+
+      - name: Generate intent PR packet preview
+        run: deno task packet:intent > intent-pr-packet.generated.md
+
+      - name: Upload intent packet artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: intent-pr-packet
+          path: intent-pr-packet.generated.md
